@@ -1,0 +1,297 @@
+<!-- Create form of Bank Account details using reactive forms -->
+
+<div class="container" style="background-color:transparent; color: black;">
+    <div class="row">
+        <h2>Create New Account</h2>
+        <form [formGroup]="createAccountForm">
+            <table width="1000px" height="100px" style="padding: 50px">
+                <tr>
+                    <td>
+                        <label style="width: 150px;" for="accountNumber">Account Number :<span
+                                style="color: red;">*</span></label>
+                        <input type="text" id="accountNumber"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="accountNumber">
+                        <!--add validation for accountNumber using angular16  -->
+                        <div *ngIf="createAccountForm.controls['accountNumber'].touched">
+                            <div *ngIf="createAccountForm.controls['accountNumber'].errors?.['required']"
+                                style="color:red ;">
+                                Account Number is required
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+
+                        <label style="width: 150px;" for="accountName">Account Name : <span
+                                style="color: red;">*</span></label>
+                        <input type="text" id="accountName"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="accountName">
+                        <!-- add validation for accounName -->
+                        <div *ngIf="createAccountForm.controls['accountName'].touched">
+                            <div *ngIf="createAccountForm.controls['accountName'].errors?.['required']"
+                                style="color:red ;">
+                                Account Name is required
+                            </div>
+                        </div>
+                    </td>
+
+                </tr><br />
+
+                <tr>
+                    <td>
+                        <label style="width: 150px;" for="accountStatus">Account Status : <span
+                                style="color: red;">*</span></label>
+                        <select id="accountStatus" (change)="onChange($event)"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="accountStatus">
+                            <option value="" disabled selected>Select</option>
+                            <option value="Active">Active</option>
+                            <option value="InActive">InActive</option>
+                        </select>
+                        <div *ngIf="createAccountForm.controls['accountStatus'].touched">
+                            <div *ngIf="createAccountForm.controls['accountStatus'].errors?.['required']"
+                                style="color:red ;">
+                                Account Status is required
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <label style="width: 150px;" for="accountType">Account Type : <span
+                                style="color: red;">*</span></label>
+                        <select id="accountType" style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="accountType">
+                            <option value="" disabled selected>Select</option>
+                            <option value="Savings">Savings</option>
+                            <option value="Current">Current</option>
+                        </select>
+                        <div *ngIf="createAccountForm.controls['accountType'].touched">
+                            <div *ngIf="createAccountForm.controls['accountType'].errors?.['required']"
+                                style="color:red ;">
+                                Account Type is required
+                            </div>
+                        </div>
+                    </td>
+
+                </tr><br />
+                <tr>
+                    <td>
+                        <label style="width: 150px;" for="accountOpenDate">Account Open Date : <span
+                                style="color: red;">*</span></label>
+                        <input type="date" id="accountOpenDate"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="accountOpenDate">
+                        <div *ngIf="createAccountForm.controls['accountOpenDate'].touched">
+                            <div *ngIf="createAccountForm.controls['accountOpenDate'].errors?.['required']"
+                                style="color:red ;">
+                                Account Open Date is required
+                            </div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <label style="width: 150px;" for="accountCloseDate">Account Close Date</label>
+                        <input type="date" id="accountCloseDate"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="accountCloseDate">
+                    </td>
+
+                </tr>
+                <br />
+                <tr>
+                    <td>
+                        <label style="width: 150px;" for="BranchName">Branch Name : <span
+                                style="color: red;">*</span></label>
+                        <input type="text" id="BranchName"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="BranchName">
+                        <div *ngIf="createAccountForm.controls['BranchName'].touched">
+                            <div *ngIf="createAccountForm.controls['BranchName'].errors?.['required']"
+                                style="color:red ;">
+                                Branch Name is required
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- mobile number -->
+                        <label style="width: 150px;" for="MobileNumber">Mobile Number : <span
+                                style="color: red;">*</span></label>
+                        <input type="text" id="MobileNumber"
+                            style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="MobileNumber">
+                        <div *ngIf="createAccountForm.controls['MobileNumber'].touched">
+                            <div *ngIf="createAccountForm.controls['MobileNumber'].errors?.['required']"
+                                style="color:red ;">
+                                Mobile Number is required
+                            </div>
+                            <div *ngIf="createAccountForm.controls['MobileNumber'].errors?.['minlength']"
+                                style="color:red ;">
+                                Mobile Number should be 10 digit
+                            </div>
+                        </div>
+
+                    </td>
+
+                </tr><br />
+                <tr>
+                    <td>
+                        <label style="width: 150px;" for="IFSCCode">IFSC Code : <span
+                                style="color: red;">*</span></label>
+                        <input type="text" id="IFSCCode" style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="IFSCCode">
+                        <div *ngIf="createAccountForm.controls['IFSCCode'].touched">
+                            <div *ngIf="createAccountForm.controls['IFSCCode'].errors?.['required']"
+                                style="color:red ;">
+                                IFSCCode is required
+                            </div>
+                            <!-- add IFSC code Validator -->
+                            <div *ngIf="createAccountForm.controls['IFSCCode'].errors?.['invalidIFSC']"
+                                style="color:red ;">
+                                IFSC code should start with 'SBIN'
+                            </div>
+                            <div *ngIf="createAccountForm.controls['IFSCCode'].errors?.['minlength']"
+                                style="color:red ;">
+                                IFSC code should be 11 character
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <label style="width: 150px;" for="MICRCode">MICR Code : <span
+                                style="color: red;">*</span></label>
+                        <input type="text" style="width: 200px;height: 30px; border: solid 1px gainsboro;" id="MICRCode"
+                            formControlName="MICRCode">
+                        <div *ngIf="createAccountForm.controls['MICRCode'].touched">
+                            <div *ngIf="createAccountForm.controls['MICRCode'].errors?.['required']"
+                                style="color:red ;">
+                                MICRCode is required
+                            </div>
+                        </div>
+                    </td>
+                </tr><br />
+                <tr>
+                    <td>
+                        <label style="width: 150px;" for="EmailId">Email Id : </label>
+                        <input type="email" id="EmailId" style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            formControlName="EmailId">
+
+                        <!-- EmailId is invalid -->
+                        <div *ngIf="createAccountForm.controls['EmailId'].touched">
+                            <div *ngIf="createAccountForm.controls['EmailId'].errors?.['invalidEmail']"
+                                style="color:red ;">
+                                EmailId is invalid
+                            </div>
+                        </div>
+
+
+                    </td>
+                    <td>
+                        <label style="width: 150px;" for="AccountBalance">Account Balance : <span
+                                style="color: red;">*</span></label>
+                        <input type="number" style="width: 200px;height: 30px; border: solid 1px gainsboro;"
+                            id="accountBalance" formControlName="accountBalance">
+                        <div *ngIf="createAccountForm.controls['accountBalance'].touched">
+                            <div *ngIf="createAccountForm.controls['accountBalance'].errors?.['required']"
+                                style="color:red ;">
+                                AccountBalance is required
+                            </div>
+                            <!-- add validation for minimum value -->
+
+                        </div>
+                        <div *ngIf="createAccountForm.controls['accountBalance'].errors?.['min']" style="color:red ;">
+                            AccountBalance should be maintained RS.500
+                        </div>
+
+                    </td>
+                </tr>
+                <br />
+                <tr>
+                    <td>
+                        <input type="button" class="btn btn-primary" [disabled]="!createAccountForm.valid|| !addMode"
+                            (click)="AddAccount()"  value="Create Account"> &nbsp;
+                        <input type="button" class="btn btn-primary" (click)="View()" value="View Account"> &nbsp;
+
+
+                    </td>
+                    <td><input type="button" #update class="btn btn-primary" [disabled]="!editMode"
+                            (click)="updateAccount()" value="Update Account"> &nbsp;
+                        <input type="button" class="btn btn-primary" (click)="clear()" value="Clear">
+                    </td>
+
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+
+
+    <div class="row" *ngIf="dataSource">
+        <div class="col-xs-10 col-xs-offset-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2>View Account</h2>
+                </div>
+                <div class="panel-body">
+
+                    <!-- add export to excel button -->
+                    <div style="text-align: right;">
+                        <button class="btn btn-primary" (click)="exportAsXLSX()">Export to Excel</button>
+                    </div><br />
+                    <table class="table table-bordered table-striped tablebgcolor"
+                        style="color:black;background-color:transparent;">
+                        <tr>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>Account Number</th>
+                            <th>Account Name</th>
+                            <th>Account Status</th>
+                            <th>Account Type</th>
+                            <th>Branch Name</th>
+                            <th>Mobile Number</th>
+                            <th>Account Open Date</th>
+                            <th>Account Close Date</th>
+                            <th>IFSC Code</th>
+                            <th>MICR Code</th>
+                            <th>Email Id</th>
+                            <th>Balance</th>
+                        </tr>
+                        <ng-container *ngFor="let acct of dataSource">
+                            <tr>
+                                <td> <button class="btn btn-danger btn-sm mx-1" title="Edit User" type="button"
+                                        (click)="editAccount(acct.accountNumber)">
+                                        <i style="color: green;" class="bi-pen-fill"></i>
+
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm mx-1" title="Delete Acct" type="button"
+                                        (click)="deleteAccount(acct.accountNumber)">
+                                        <i style="color: red;" class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                                <td>{{acct.accountNumber}}</td>
+                                <td>{{acct.accountName}}</td>
+                                <td>{{acct.accountStatus}}</td>
+                                <td>{{acct.accountType}}</td>
+                                <td>{{acct.BranchName}}</td>
+                                <td>{{acct.MobileNumber}}</td>
+                                <td>{{acct.accountOpenDate | date:"MM/dd/yyyy"}}</td>
+                                <td>{{acct.accountCloseDate | date:"mm/dd/yyyy"}}</td>
+                                <td>{{acct.IFSCCode}}</td>
+                                <td>{{acct.MICRCode}}</td>
+                                <td>{{acct.EmailId}}</td>
+                                <td>{{acct.AccountBalance}}</td>
+                            </tr>
+                        </ng-container>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

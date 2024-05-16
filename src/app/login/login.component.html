@@ -1,0 +1,43 @@
+<div class="container" style="background-color:transparent; color: black;">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+
+
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" *ngIf="!successMessage">
+        <h2>Login Form</h2>
+        <div class="form-group">
+          <!-- add UserName field -->
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" ngModel required>
+
+        </div>
+        <!-- Add Password field using form-group -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" ngModel required>
+        </div><br />
+        <!-- Add login button -->
+        <button type="submit" class="btn btn-primary">Login</button><br />
+        <div>
+          <div *ngIf="successMessage" class="alert alert-success">
+            {{successMessage}}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <!-- display success and error message -->
+
+
+
+  </div>
+
+  <div *ngIf="successMessage"><!-- Loads the component based on the route path -->
+
+    <app-nav-menu></app-nav-menu>
+
+
+  </div>
